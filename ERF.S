@@ -25,6 +25,7 @@ RPL
 EXTERNAL EFa
 EXTERNAL EFDoErf
 EXTERNAL EFDoIErf
+EXTERNAL EFDoBestQ
 EXTERNAL EFDoQ
 EXTERNAL EFDoIQ
 
@@ -57,7 +58,17 @@ ASSEMBLE
 RPL
 xNAME IQNRM
 ::
-  CK1 CKREAL %>%% EFDoIQ %%>%
+  CK1 CKREAL
+  ( DUPDUP %0< SWAP %1 %> OR IT SETIVLERR )
+  %>%% EFDoIQ %%>%
+;
+
+ASSEMBLE
+        CON(1)  8
+RPL
+xNAME QBEST
+::
+  CK1 CKREAL %>%% EFDoBestQ %%>%
 ;
 
 NULLNAME EFa ( --> %% )
@@ -86,6 +97,23 @@ NULLNAME EFDoIErf ( %% --> %% )
   %%SQRT SWAP %%-
   %%SQRT
   SWAP IT %%CHS
+;
+
+NULLNAME EFDoBestQ ( %% --> %% )
+::
+  DUPDUP %%* ( x x^2 )
+  2DUP %%* ( x x^2 x^3 )
+  3PICK ( x x^2 x^3 x )
+  2DUP %%* SWAP ( x x^2 x^3 x^4 x )
+  2DUP %%* SWAP ( x x^2 x^3 x^4 X^5 x )
+  OVER %%* ( x x^2 x^3 x^4 X^5 x^6 )
+  %% 1.8643E-6 %%* SWAP ( x x^2 x^3 x^4 ax^6 X^5 )
+  %% -1.09E-4 %%* %%+ SWAP ( x x^2 x^3 ax^6+bX^5 x^4 )
+  %% 2.238E-3 %%* %%+ SWAP ( x x^2 ax^6+bx^5+cx^4 x^3 )
+  %% -2.3735E-2 %%* %%+ SWAP ( x ax^6+bx^5+cx^4+dx^3 x^2 )
+  %% -0.344544 %%* %%+ SWAP ( ax^6+bx^5+cx^4+dx^3+ex^2 x )
+  %% -0.774128 %%* %%+ %% -0.698740 %%+
+  %%EXP
 ;
 
 NULLNAME EFDoQ ( %% --> %% )
