@@ -1,4 +1,4 @@
-TITLE Geometry Library
+TITLE Error Function
 OUTPUT EFLIB
 OPTION CODE
 LLIST EFLIB.LR

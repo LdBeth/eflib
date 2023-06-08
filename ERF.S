@@ -26,6 +26,9 @@ EXTERNAL EFa
 EXTERNAL EFDoErf
 EXTERNAL EFDoIErf
 EXTERNAL EFDoBestQ
+EXTERNAL EFerfinv
+EXTERNAL EFerfiT
+EXTERNAL EFerfiF
 EXTERNAL EFDoQ
 EXTERNAL EFDoIQ
 
@@ -43,6 +46,16 @@ RPL
 xNAME IERF
 ::
   CK1 CKREAL %>%% EFDoIErf %%>%
+;
+
+ASSEMBLE
+        CON(1)  8
+RPL
+xNAME ERFIV
+::
+  CK1 CKREAL
+  DUP %ABS %1 %> IT SETIVLERR
+  %>%% EFerfinv %%>%
 ;
 
 ASSEMBLE
@@ -99,6 +112,18 @@ NULLNAME EFDoIErf ( %% --> %% )
   SWAP IT %%CHS
 ;
 
+NULLNAME EFDoQ ( %% --> %% )
+::
+  %%2 %%SQRT %%/ EFDoErf %%1 SWAP %%-
+  %%2 %%/
+;
+
+NULLNAME EFDoIQ ( %% --> %% )
+::
+  %%2 %%* %%1 SWAP %%- EFDoIErf
+  %%2 %%SQRT %%*
+;
+
 NULLNAME EFDoBestQ ( %% --> %% )
 ::
   DUPDUP %%* ( x x^2 )
@@ -116,16 +141,39 @@ NULLNAME EFDoBestQ ( %% --> %% )
   %%EXP
 ;
 
-NULLNAME EFDoQ ( %% --> %% )
+NULLNAME EFerfinv ( %% --> %% )
 ::
-  %%2 %%SQRT %%/ EFDoErf %%1 SWAP %%-
-  %%2 %%/
+  DUPDUP %%1 %%- %%CHS SWAP %%1 %%+ %%* %%LN %%CHS
+  DUP %%5 %%< ITE EFerfiT EFerfiF SWAPDROP %%*
 ;
 
-NULLNAME EFDoIQ ( %% --> %% )
+NULLNAME EFerfiT ( %% --> _ %% )
 ::
-  %%2 %%* %%1 SWAP %%- EFDoIErf
-  %%2 %%SQRT %%*
+  %%5 %%2 %%/ %%- ( w )
+  %% 2.81022636E-08 ( w p )
+  OVER %%* %% 3.43273939E-07 %%+ ( w wp+p )
+  OVER %%* %% -3.5233877E-06 %%+
+  OVER %%* %% -4.39150654E-06 %%+
+  OVER %%* %% 0.00021858087 %%+
+  OVER %%* %% -0.00125372503 %%+
+  OVER %%* %% -0.004177681643 %%+
+  OVER %%* %% 0.246640727 %%+
+  OVER %%* %% 1.50140941 %%+
+  
+;
+
+NULLNAME EFerfiF ( %% --> _ %% )
+::
+  %%SQRT %%3 %%- ( w )
+  %% -0.000200214257 ( w p )
+  OVER %%* %% 0.000100950558 %%+
+  OVER %%* %% 0.00134934322 %%+
+  OVER %%* %% -0.00367342844 %%+
+  OVER %%* %% 0.00573950773 %%+
+  OVER %%* %% -0.0076224613 %%+
+  OVER %%* %% 0.00943887047 %%+
+  OVER %%* %% 1.00167406 %%+
+  OVER %%* %% 2.83297682 %%+
 ;
 
 ASSEMBLE

@@ -16,3 +16,5 @@ function and its inverse, February 6, 2008.
 
 [Dao Ngoc Phong, Nguyen Xuan Hoai, R.I. (Bob) McKay] Evolving
 the Best Known Approximation to the Q Function.
+
+[Mike Giles] Approximating the erfinv function.
