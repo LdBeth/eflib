@@ -90,11 +90,12 @@ NULLNAME EFa ( --> %% )
 NULLNAME EFDoErf ( %% --> %% )
 ::
   DUP %%0< SWAPDUP ( Save sign )
-  %%* { NULLLAM } BIND ( Save x^2 )
+  %%* 1LAMBIND ( Save x^2 )
   %%1
   1GETLAM
   %%4 %%PI %%/ EFa 1GETLAM %%* %%+ %%*
-  %%1 EFa 1GETLAM ABND %%* %%+ %%/
+  %%1 EFa 1GETLAM ABND
+  %%* %%+ %%/
   %%CHS %%EXP %%- %%SQRT
   SWAP IT %%CHS
 ;
@@ -104,7 +105,7 @@ NULLNAME EFDoIErf ( %% --> %% )
   DUP %%0< SWAPDUP
   %%*
   %%1 SWAP %%- %%LN
-  { NULLLAM } BIND
+  1LAMBIND
   %%2 %%PI EFa %%* %%/
   1GETLAM %%2 %%/ %%+ DUP
   DUP %%* 1GETLAM ABND EFa %%/ %%-
@@ -127,18 +128,14 @@ NULLNAME EFDoIQ ( %% --> %% )
 
 NULLNAME EFDoBestQ ( %% --> %% )
 ::
-  DUPDUP %%* ( x x^2 )
-  2DUP %%* ( x x^2 x^3 )
-  3PICK ( x x^2 x^3 x )
-  2DUP %%* SWAP ( x x^2 x^3 x^4 x )
-  2DUP %%* SWAP ( x x^2 x^3 x^4 X^5 x )
-  OVER %%* ( x x^2 x^3 x^4 X^5 x^6 )
-  %% 1.8643E-6 %%* SWAP ( x x^2 x^3 x^4 ax^6 X^5 )
-  %% -1.09E-4 %%* %%+ SWAP ( x x^2 x^3 ax^6+bX^5 x^4 )
-  %% 2.238E-3 %%* %%+ SWAP ( x x^2 ax^6+bx^5+cx^4 x^3 )
-  %% -2.3735E-2 %%* %%+ SWAP ( x ax^6+bx^5+cx^4+dx^3 x^2 )
-  %% -0.344544 %%* %%+ SWAP ( ax^6+bx^5+cx^4+dx^3+ex^2 x )
-  %% -0.774128 %%* %%+ %% -0.698740 %%+
+  DUP %% 1.8643E-6 %%* ( x ax )
+  %% -1.09E-4 %%+ ( x ax+b )
+  OVER %%* ( x ax^2+bx )
+  %% 2.238E-3 %%+ OVER %%*  ( x ax^3+bx^2+cx )
+  %% -2.3735E-2 %%+ OVER %%*  ( x ax^4+bx^3+cx^2+dx )
+  %% -0.344544 %%+ OVER %%*  ( x ax^5+bx^4+cx^3+dx^2+ex )
+  %% -0.774128 %%+ %%*  ( ax^6+bx^5+cx^4+dx^3+ex^2+fx )
+  %% -0.698740 %%+ ( ax^6+bx^5+cx^4+dx^3+ex^2+fx+g )
   %%EXP
 ;
 
