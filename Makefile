@@ -2,6 +2,8 @@ all: EFLIB
 .PRECIOUS: %.a
 .PHONY: clean
 
+%.S: %.ML1
+	ml1 $< > $@
 %.a: %.S
 	rplcomp $*.S $*.a $*.ext
 %.O: %.a
