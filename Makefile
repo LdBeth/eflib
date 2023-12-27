@@ -1,6 +1,6 @@
 all: EFLIB
 .PRECIOUS: %.a
-.PHONY: clean
+.PHONY: clean cleanall
 
 %.S: %.ML1
 	ml1 $< > $@
@@ -15,8 +15,10 @@ ERF.M: ERF.MN ERF.O
 	sasm -N -o EFHEAD.O EFHEAD.a
 	sasm -N -o EFHASH.O EFHASH.a
 	sasm -N -o EFEND.O EFEND.a
-EFLIB: ERF.O ERF.M BINHEAD.O
+EFLIB: EFLIB.M ERF.O ERF.M BINHEAD.O
 	sload ERF.M
-	sload -H EF.M
+	sload -H EFLIB.M
 clean:
 	rm -f *.O *.a
+cleanall: clean
+	rm -f *.LR
