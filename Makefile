@@ -21,4 +21,4 @@ EFLIB: EFLIB.M ERF.O ERF.M BINHEAD.O
 clean:
 	rm -f *.O *.a
 cleanall: clean
-	rm -f *.LR
+	rm -f *.LR ERF.S
