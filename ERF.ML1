@@ -31,6 +31,7 @@ EXTERNAL EFerfiT
 EXTERNAL EFerfiF
 EXTERNAL EFDoQ
 EXTERNAL EFDoIQ
+EXTERNAL EFDoIQSml
 
 MCINS []
 MCSKIP MT,@@ WITH NL
@@ -136,7 +137,7 @@ NULLNAME EFDoBestQ ( %% --> %% )
 
 NULLNAME EFDoIQSml ( %% --> %% )
 ::
-  DUP %%* %%2 %%* %%PI %%* DUP %%LN %% 1.0 SWAP %%-
+  DUP %%* %%2 %%* %%PI %%* DUP %%LN %%1 SWAP %%-
   %%* %%LN %%CHS %%SQRT
 ;
 
