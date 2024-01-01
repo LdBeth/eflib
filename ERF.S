@@ -32,48 +32,62 @@ EXTERNAL EFerfiF
 EXTERNAL EFDoQ
 EXTERNAL EFDoIQ
 
-MCINS []
-MCSKIP MT,@@ WITH NL
-MCDEF XDEF :: AS @ASSEMBLE
+ASSEMBLE
         CON(1)  8
 RPL
-xNAME [A1]::@
-
-XDEF ERF
+xNAME ERF
 ::
   CK1 CKREAL %>%% EFDoErf %%>%
 ;
 
-XDEF IERF
+ASSEMBLE
+        CON(1)  8
+RPL
+xNAME IERF
 ::
   CK1 CKREAL %>%% EFDoIErf %%>%
 ;
 
-XDEF ERFIV
+ASSEMBLE
+        CON(1)  8
+RPL
+xNAME ERFIV
 ::
   CK1 CKREAL
   DUP %ABS %1 %> IT SETIVLERR
   %>%% EFerfinv %%>%
 ;
 
-XDEF QNORM
+ASSEMBLE
+        CON(1)  8
+RPL
+xNAME QNORM
 ::
   CK1 CKREAL %>%% EFDoQ %%>%
 ;
 
-XDEF IQNRM
+ASSEMBLE
+        CON(1)  8
+RPL
+xNAME IQNRM
 ::
   CK1 CKREAL
   ( DUPDUP %0< SWAP %1 %> OR IT SETIVLERR )
   %>%% EFDoIQ %%>%
 ;
 
-XDEF QBEST
+ASSEMBLE
+        CON(1)  8
+RPL
+xNAME QBEST
 ::
   CK1 CKREAL %>%% EFDoBestQ %%>%
 ;
 
-XDEF IQSML
+ASSEMBLE
+        CON(1)  8
+RPL
+xNAME IQSML
 ::
   CK1 CKREAL
   %>%% EFDoIQSml %%>%

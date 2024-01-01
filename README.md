@@ -18,3 +18,7 @@ function and its inverse, February 6, 2008.
 the Best Known Approximation to the Q Function.
 
 [Mike Giles] Approximating the erfinv function.
+
+[Pingyi Fan] New inequalities of Mill's ratio and Its Application to
+The Inverse Q-function Approximation
+
