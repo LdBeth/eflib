@@ -16,11 +16,6 @@ float.
 Implementation of error function and its inverse using method from
 Sergei Winitzki's paper.
 
-### 
-
-Implementation of inverse error function using method from Sergei
-Winitzki's paper.
-
 ### `ERFIV`
 
 Implementation of inverse error function using method from Mike Giles'
