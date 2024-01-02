@@ -1,8 +1,15 @@
-# SysRPL implementation for Error Functions.
+# SysRPL implementation of Error function and Q function.
+
+This program is intended for use with HP49/50G calculators.
 
 ## Build
 
 Need HPTools, then just run `make`.
+
+## Install
+
+The pre-built binary for the library is `EFLIB`, copy it to the HP
+calculator the way you usually do, and attach the library.
 
 ## Usage
 
