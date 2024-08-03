@@ -16,7 +16,6 @@
 *    along with this program.  If not, see <https://www.gnu.org/licenses/>.
 *
 ****
-RPL
 INCLUDE EFEXTDEC.H
 
 MCINS []
@@ -65,7 +64,6 @@ XDEF IQSML
   CK1 CKREAL
   %>%% EFDoIQSml %%>%
 ;
-
 
 ASSEMBLE
 =EFcfg

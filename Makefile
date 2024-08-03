@@ -15,10 +15,10 @@ ERF.M: ERF.MN ERF.O EFSUBS.O
 	sasm -N -o EFHEAD.O EFHEAD.a
 	sasm -N -o EFHASH.O EFHASH.a
 	sasm -N -o EFEND.O EFEND.a
-EFLIB: EFLIB.M ERF.O EFSUBS.O ERF.M BINHEAD.O
+EFLIB: EFLIB.M ERF.M BINHEAD.O
 	sload ERF.M
 	sload -H EFLIB.M
 clean:
-	rm -f *.O *.a
+	rm -f *.O *.a *.ext
 cleanall: clean
 	rm -f *.LR ERF.S

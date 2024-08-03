@@ -1,6 +1,5 @@
 * -*- mode:sysrpl -*-
 INCLUDE EFEXTDEC.H
-RPL
 
 NULLNAME EFa ( --> %% )
 :: %% 0.147 ;
